@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<style>
+
+body {font-family: Arial, Helvetica, sans-serif;}
+ h2{
+      text-align: center;
+      color: white;
+      background-color:turquoise;
+    padding:0px;
+    margin: 0px;
+      
+      }
+    h5{
+      text-align: center;
+      color: white;
+      background-color:turquoise;
+    padding:0px;
+    margin: 0px;
+      }
+.navbar {
+  width: 100%;
+  background-color: #555;
+  overflow: auto;
+}
+
+.navbar a {
+  float: left;
+  padding: 12px;
+  color: white;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.navbar a:hover {
+  background-color: #000;
+}
+
+.active {
+  background-color: #4CAF50;
+}
+
+@media screen and (max-width: 500px) {
+  .navbar a {
+    float: none;
+    display: block;
+  }
+}
+
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+.dropdown .dropbtn {
+  font-size: 16px;  
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+
+.navbar a:hover, .dropdown:hover .dropbtn {
+  background-color: red;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+</style>
+</head>
+<body > <!-- onload="getdata_setup()">   -->
+
+
+<h2>ESP8266-ESP32 Ksoft V1.0</h2>
+<h5>Date: <span id="dateval"> </span> -    Time: <span id="timeval">  </span> </h5>
+<div class="navbar">
+      <div class="dropdown">
+	
+    <button class="dropbtn"style="font-size:20px"><i class="fa fa-bars"></i> Menu </button>
+    <div class="dropdown-content" >
+     <a class="active" href="/"><i class="fa fa-fw fa-home"></i> Home</a> 
+	 <a href="/_ac"><i class="fa fa-fw fa-user"></i> Config</a>
+      <a class="fa fa-cog" aria-hidden="true" href="/setup">  Setup</a>
+      <a class="fa fa-credit-card" aria-hidden="true" href="/fs_read"> SFLash</a>
+	  <a class="fa fa-address-book-o" aria-hidden="true" href="/about"> About</a>
+    </div>
+</div>
+
+<p style="color:tomato"> <i class="fa fa-fw fa-user"></i> XuanKyAutomation</p>
+</div>
+
+<br>
+
+<br>
+
+ <fieldset style = "width: 330px">
+ <legend>SETUP PARAMETER FIELD</legend>
+ 
+
+   <form action="/setup_data" method="GET">
+    <fieldset>
+   <legend>HOST NAME SETUP</legend>
+<table>
+  <tr><td>HostName*</td>    
+  <td><input style="font-size:15px"type="text" name="host" id="HostName" size="20" maxlength="20" autofocus="autofocus" placeholder= "" > </td></tr>
+  <tr><td>IP Address*</td>    
+  <td><input style="font-size:15px"type="text" name="IP" id="IPaddress" size="20" maxlength="20" autofocus="autofocus" placeholder= ""> </td></tr>
+
+
+</table>
+
+</fieldset>
+</form>
+
+  <br>
+
+<form action="/setup_data" method="GET">
+   <fieldset>
+   
+   <legend>Mqtt Setup</legend>
+<table>
+  <tr><td>MqttBroker*</td>    
+  <td><input style="font-size:15px"type="text" name="mqttbroker" id="mqbroker" size="18" maxlength="20" autofocus="autofocus" placeholder= "Mqtt Broker"> </td></tr>
+   <tr><td>ClientID*</td>
+  <td><input style="font-size:15px" type="text" name="mqttclientid" id="mqclient" size="18" maxlength="30"placeholder= "ClientID"></td></tr>
+  <tr><td>UserName*</td>
+  <td><input style="font-size:15px"type="text" name="mqttuser" id="mquser" size="18" maxlength="30"placeholder= "MqttUsername"></td></tr>
+  <tr><td>Password*</td>    
+  <td><input style="font-size:15px"type="password" name="mqttpass" id="mqpass" size="18" maxlength="10" placeholder="Password"></td></tr>
+  <td><hr> </td>
+    <td><hr> </td>
+  <tr><td>TopicPub*</td>    
+  <td><input style="font-size:15px"type="text" name="mqttpub" id="toppub" size="18" maxlength="50"placeholder= "Topic Pub"></td></tr>
+  <tr><td>TopicSub*</td>    
+  <td><input style="font-size:15px"type="text" name="mqttsub" id="topsub" size="18" maxlength="50" placeholder= "Topic Sub"></td></tr>
+    <td><hr> </td>    <td><hr> </td>
+  
+<tr><td> <label for="Update period">Interval*</label></td> 
+    <td> <select style="font-size:15px"id="updatemq" name="mqttupdate">
+    <option value="5">5s</option>
+    <option value="10">10s</option>
+    <option value="20">20s</option>
+    <option value="30">30s</option>
+  </select> </td>
+    </tr>
+
+<tr><td><label>MQTTEnable</label>  </td> 
+  <td>  
+   <input type="radio" id="mqenb" name="mqttenb" value="Enable">
+  <label for="age1">Enable</label><br>
+  <input type="radio" id="mqdis" name="mqttenb" value="Disable">
+  <label for="age2">Disable</label><br>  
+  </td></tr>
+  
+  
+  <tr><td> </td>
+<td><input style="font-size:15px" type="submit" value="Save">
+</tr></td>
+</table>
+ </fieldset>
+</form>
+
+
+
+    <!-- --------------------------------------------------------->
+<br>
+
+<form action="/setup_data" method="GET">
+    <fieldset >
+	<legend>Blynk Setup</legend>
+<table>
+  <tr><td>BlynkServer*</td>    
+  <td><input style="font-size:15px"type="text" name="blkserver" id="blkserver" size="18" maxlength="15" autofocus="autofocus" placeholder= "Blynk Server"> </td></tr>
+   <tr><td>AuthToken*</td>
+  <td><input style="font-size:15px"type="text" name="blkauth" id="blkauth" size="18" maxlength="50"placeholder= "Blynk Auth Tocken"></td></tr>
+  <tr><td>PortNumber*</td>
+  <td><input style="font-size:15px"type="text" name="blkport" id="blkport" size="18" maxlength="30"placeholder= "BlynkPort"></td></tr>
+  
+  <td><hr> </td>
+  <td><hr> </td>
+<tr><td> <label for="Update period">Interval*</label></td> 
+    <td> <select style="font-size:15px" id="update_blk" name="blkupdate">
+    <option value="3">3s</option>
+    <option value="5">5s</option>
+    <option value="10">10s</option>
+    <option value="13">13s</option>
+  </select> </td>
+  
+  </tr>
+
+<tr><td><label>BlynkEnable</label>  </td>  
+  <td>  
+   <input type="radio" id="blkenb" name="blkenable" value="Enable">
+  <label for="age1">Enable</label><br>
+  <input type="radio" id="blkdis" name="blkenable" value="Disable">
+  <label for="age2">Disable</label><br>  
+  </td></tr>
+  
+  
+  <tr><td> </td>
+<td><input style="font-size:15px"type="submit" value="Save">
+</tr></td>
+</table>
+ </fieldset>
+</form>
+
+  </fieldset>
+ <br>
+  
+<!--------------------------------------------------------------------------->
+
+<footer style="color:blue; text-align:left"> CopyRight Xuan Ky Automation <br>Email: phamxuanky82@gmail.com </footer>
+
+
+<script>
+    window.onload = getdata_setup();
+
+
+ function getdata_setup() {
+    var den =[]; var status=[];
+         var xhttp = new XMLHttpRequest();
+          xhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+            var json = JSON.parse(this.responseText);
+      //var json={"Mq_server":"ON","Mq_Channel":"ON","Mq_username":"ON","Mq_password":"ON","Mq_TopicPub":"ON","Mq_TopicSub":"ON","Mq_enable":"ON","DEN7":"ON" }
+  
+  // Host Name display
+  document.getElementById("HostName").value =json.HostName;
+  document.getElementById("IPaddress").value =json.IP;
+  // MQTT Display 
+ document.getElementById("mqbroker").value =json.Mq_server;
+ document.getElementById("mqclient").value =json.Mq_Channel;
+ document.getElementById("mquser").value =json.Mq_username;
+ document.getElementById("mqpass").value =json.Mq_password;
+ document.getElementById("toppub").value =json.Mq_TopicPub;
+ document.getElementById("topsub").value =json.Mq_TopicSub;
+ var mqttinterval = json.mq_updateinterval;
+ if (mqttinterval=="5") {
+ 
+ document.getElementById("updatemq").selectedIndex="0";
+ }
+ else if (mqttinterval=="10") {document.getElementById("updatemq").selectedIndex="1";}
+ else if (mqttinterval=="20") {document.getElementById("updatemq").selectedIndex="2";}
+ else{document.getElementById("updatemq").selectedIndex="3";}
+ 
+ if (json.Mq_enable =="Enable"){
+ document.getElementById("mqenb").checked =true;
+ document.getElementById("mqdis").checked =false;
+ 
+ }else {
+    document.getElementById("mqenb").checked =false;
+ document.getElementById("mqdis").checked =true;
+ } 
+ //------------Finish MQTT Retrive data-------------------------------------------------
+ //BLYNK RETRIVE DATA TO WEB
+ 
+ document.getElementById("blkserver").value =json.blk_server;
+ document.getElementById("blkauth").value =json.blk_auth;
+ document.getElementById("blkport").value =json.blkPort;
+
+ var blkinterval = json.blk_interval;
+ if (blkinterval=="3") {
+ 
+ document.getElementById("update_blk").selectedIndex="0";
+ }
+ else if (blkinterval=="5") {document.getElementById("update_blk").selectedIndex="1";}
+ else if (blkinterval=="10") {document.getElementById("update_blk").selectedIndex="2";}
+ else{document.getElementById("update_blk").selectedIndex="3";}
+ 
+ if (json.BlkENB =="Enable"){
+ document.getElementById("blkenb").checked =true;
+ document.getElementById("blkdis").checked =false;
+ 
+ }else {
+    document.getElementById("blkenb").checked =false;
+ document.getElementById("blkdis").checked =true;
+ } 
+ 
+   
+          }
+        };
+        xhttp.open("GET", "/setupdata_display", true);
+        xhttp.send();
+  }
+
+</script>
+
+
+</body>
+</html>
+

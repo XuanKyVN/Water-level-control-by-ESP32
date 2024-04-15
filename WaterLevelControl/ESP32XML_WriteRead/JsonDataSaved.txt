@@ -1,0 +1,13 @@
+JSON Data Save for Power Monitoring
+
+YEARS = 12month
+
+Value:{
+
+	YearSave: {"Jan": 10, "Feb":123, ....... "Dec":100}
+	DateSave: {"Mon" : 25, "Tue": 32, ........"Sun": 45}
+
+}
+
+
+

@@ -1,0 +1,36 @@
+<form>
+  <input type=number step=1 /> Step 1 (default)<br />
+  <input type=number step=0.01 /> Step 0.01<br />
+  <input type=number step=any /> Step any<br />
+  <input type=range step=20 /> Step 20<br />
+  <input type=datetime-local step=60 /> Step 60 (default)<br />
+  <input type=datetime-local step=1 /> Step 1<br />
+  <input type=datetime-local step=any /> Step any<br />
+  <input type=datetime-local step=0.001 /> Step 0.001<br />
+  <input type=datetime-local step=3600 /> Step 3600 (1 hour)<br />
+  <input type=datetime-local step=86400 /> Step 86400 (1 day)<br />
+  <input type=datetime-local step=70 /> Step 70 (1 min, 10 sec)<br />
+</form>
+
+
+
+
+Based on this answer
+
+<input type="text" id="sno" placeholder="Only float with dot !"   
+   onkeypress="return (event.charCode >= 48 && event.charCode <= 57) ||  
+   event.charCode == 46 || event.charCode == 0 ">
+Meaning :
+
+Char code :
+
+48-57 equal to 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
+0 is Backspace(otherwise need refresh page on Firefox)
+46 is dot
+&& is AND , || is OR operator.
+
+if you try float with comma :
+
+<input type="text" id="sno" placeholder="Only float with comma !"   
+     onkeypress="return (event.charCode >= 48 && event.charCode <= 57) ||  
+     event.charCode == 44 || event.charCode == 0 ">

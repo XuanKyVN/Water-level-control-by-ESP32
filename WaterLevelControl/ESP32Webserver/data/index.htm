@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> waterpumpcontrol</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+.menu > a:link {
+    position: absolute;
+    display: inline-block;
+    right: 12px;
+    padding: 0 6px;
+    text-decoration: none;
+    }
+.slidecontainer {
+  width: 100%;
+}
+
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 15px;
+  border-radius: 5px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .0s;
+  transition: opacity .2s;
+}
+
+.slider:hover {
+  opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #326C88;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #326C88;
+  cursor: pointer;
+}
+
+/* Rounded switch */
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider1 {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider1:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .2s;
+  transition: .2s;
+}
+
+input:checked + .slider1 {
+  background-color: #326C88;
+}
+
+input:focus + .slider1 {
+  box-shadow: 0 0 1px #326C88;
+}
+
+input:checked + .slider1:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+.slider1.round {
+  border-radius: 34px;
+}
+
+.slider1.round:before {
+  border-radius: 50%;
+}
+/*------------------Button----------------------*/
+.led{
+  font-weight : bold;
+}
+
+             ul {
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+                overflow: hidden;
+
+        
+                
+              }
+
+              li {
+                float: left;
+        width: 50%;
+        text-align: center;   
+              }
+
+      
+         h2{
+              text-align: center;
+              color: white;
+              background-color:teal;
+            padding:0px;
+            margin: 0px;
+              
+              }
+            h5{
+              text-align: center;
+              color: white;
+              background-color:teal;
+            padding:0px;
+            margin: 0px;
+              }
+
+/*------------------NAV-----------------------*/
+body {font-family: Arial, Helvetica, sans-serif;}
+
+.navbar {
+  width: 100%;
+  background-color: #555;
+  overflow: auto;
+ 
+}
+
+.navbar a {
+  float: left;
+  padding: 12px;
+  color: white;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.navbar a:hover {
+  background-color: #000;
+}
+
+.active {
+  background-color: #4CAF50;
+}
+
+@media screen and (max-width: 500px) {
+  .navbar a {
+    float: none;
+    display: block;
+  }
+}
+
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+.dropdown .dropbtn {
+  font-size: 16px;  
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+
+.navbar a:hover, .dropdown:hover .dropbtn {
+  background-color: red;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+  }
+  /*Progress Bar */
+  .loadbar
+    {
+         width:50px;
+         height:200px;
+         background-color:#fff;
+         border:1px solid #ccc;
+         position:relative; 
+		 left: 45%;
+    }
+    .bar
+    {
+        width:100%;
+        display:block;        
+        font-family:arial;
+        font-size:12px; 
+        background-color:#bb9319;
+        color:#fff;       
+        position:absolute;
+        bottom:0px        
+    }
+  button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 10px 10px;
+  width:80px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 8px
+  }
+  button:hover {
+  background-color: blue;
+	
+	}
+input {
+   text-align :center;
+   width: 60px;
+   height: 20px;
+   font-weight: bold;
+   font-size: 16px;
+   }
+ .com{
+	font-weight: bold;
+    font-size: 16px;
+   }
+ 
+</style>
+</head>
+<body>
+
+
+<h2 style="text-align:center ; margin: 0px;padding-bottom:0px">CONTROL WATER PUMP</h2>
+<h5>Date: <span id="dateval"> </span> -    Time: <span id="timeval">  </span> </h5>
+
+<div class="navbar">
+      <div class="dropdown">
+	
+    <button class="dropbtn"style="font-size:20px"><i class="fa fa-bars"></i> Menu </button>
+    <div class="dropdown-content" >
+     <a class="active" href="/"><i class="fa fa-fw fa-home"></i> Home</a> 
+	 <a href="/_ac"><i class="fa fa-fw fa-user"></i> Config</a>
+      <a class="fa fa-cog" aria-hidden="true" href="/setup">  Setup</a>
+	  <a class="fa fa-credit-card" aria-hidden="true" href="/fs_read"> SFLash</a>
+      <a class="fa fa-address-book-o" aria-hidden="true" href="/about"> About</a>
+	  
+    </div>
+</div>
+
+<p style="color:tomato"> <i class="fa fa-fw fa-user"></i> XuankyAutomation| <span id="wifilogo"> <i class="fa fa-wifi" style="color: lime" aria-hidden="true"></i> </span>   <span id="wifirssi"> 0 </span>%</p>
+</div>
+
+<br>
+
+<!-----------------MAIN PROGRAM-------------------->
+<div style="background-color:MintCream; margin-bottom:1px; padding:0px 0px 20px 0px ; text-align:center" >
+
+<ul>
+    <li>
+    <p>STATUS: <span class="led" id="state0">MANUAL</span></p> 
+    <label class="switch">
+      <input class="Button"type="checkbox" id="button0" onchange="state_change()">
+      <span class="slider1 round"></span>
+    </label>
+    </li>
+    <li>
+    <p>PUMP: <span class="led"id="state1">OFF</span></p> 
+    <button id="Start" onclick="startpump()"> START</button>
+	<button id="Stop" onclick="stoppump()"> STOP</button>
+
+    </li>
+</ul>
+</div>
+
+<div style="background-color: MintCream; margin-bottom:1px; padding:0px 0px 20px 0px ; text-align:center">
+	<h5> Water Level display screen</h5>
+
+<ul>
+	<li>
+	<br>
+	<p style ="font-weight:bold"> Setting Level AUTO Start and AUTO Stop </p>
+	
+		<label> TankMAX  </label> <input type="number" value=5.0 step=0.1 id="TankMaxLevel"> <label> m</label> <br> <br>
+
+	<label> Set Start_ </label> <input type=number value=0.0 step =0.1 id="startLevel"> <label> m</label> <br> <br>
+
+	<label> Set Stop_ </label> <input type=number value = 2.0 step=0.1  id="stopLevel">  <label> m</label> 
+	<br> <br>
+	<button onclick = "setdata()"> SETUP</button>
+
+
+	</li>
+
+
+    <li>
+	<p> <span id="currentlevel"> 5 </span> m</p> 
+	<div class="loadbar">
+      <strong class="bar" id="levelbar" style='height:50%;' >50%</strong>
+    </div>
+	</li>
+	
+	
+</div>
+	<h5> ALARM AND EVENT SCREEN </h5>
+	<table>
+	<tr>
+	<td id="pumpoff"> PUMP OFF</td> <td id="overload" style="visibility:hidden;"> OVERLOAD</td><td id="cbtrip" style="visibility:hidden;"> CB Trip/OFF</td>
+	
+	<td> <p> <span class="com"> MQTT STATUS: </span> <span id="mqttenb"> DISABLE </span>  <span id="statusmqtt">Not Connected </span>  </p> </td>
+	
+	
+	</tr>
+	<tr> <td> <img src = "pumpOff.jpg" id="pumpoff1" style="position:absolute">   <img src = "pumpOn.jpg" id="pumpon1" style="visibility:hidden;"> </td>
+	
+	<!--<td><img src = "pumpOn.jpg" id="pumpon1" style="visibility:hidden;"> </td>   -->
+	
+	<td> <img src = "overload.jpg" id="overload1"style="visibility:hidden;"> </td>
+	<td> <img src = "cbtrip.jpg" id="cbtrip1"style="visibility:hidden;"> </td> 
+	
+	<td> <p> <span class="com"> BLYNK STATUS: </span> <Span id="blkenb"> DISABLE </span>  <span id="statusblk">Not Connected </span>  </p> </td>
+	
+	
+	</tr>
+</table>
+
+<label id="Auto"> Enb or Dis Setup: <span id="demoval1" style="font-weight: bold; color:red"> DISABLE </span> </label>
+<button onclick="myStartFunction()">ENABLE</button>
+<button onclick="myStopFunction()">DISABLE</button>  
+<hr> </hr>
+<footer style ="text-align : center; color: blue"> CopyRight:phamxuanky82@gmail.com; <br>Zalo: 0985510900 ;Date:24/8/2021 </footer>
+
+
+<p id="demo" style="visibility: hidden"> test </p>
+<p id="demo1" style="visibility: hidden"> test </p>
+<p id="demo2" style="visibility: hidden"> test </p>
+ 
+
+<script>
+// Global Variable
+	var TankMaxLevel =document.getElementById("TankMaxLevel");
+	var startLevel= document.getElementById("startLevel");
+	var stopLevel= document.getElementById("stopLevel");
+	var AutoMan = document.getElementById("state0");
+	var state=0;  // Value 0 Man, Val 1 Auto
+	var AutoButton = document.getElementById("button0");
+	var RunStop = document.getElementById("state1");
+	var currentlevelbar = document.getElementById("levelbar");
+	var currentlevel = document.getElementById("currentlevel");
+	
+	var barlevel=document.getElementById("levelbar");
+	
+	var myVar2 = setInterval(updateTime, 1000); 
+    window.onload = getdata();
+	window.onload=	myStartFunction();
+	
+	        
+//Web send to ESP
+//var Setup={"TankMax": 5.0, "SetStart": 0.0, "SetStop": 2.0} ; 
+//var AutoMan= 0;  /1
+// var PumpOperate= 0;   /1
+
+//Read back webserver JSON Data
+// var Readback = {"TankMax": 5.0, "SetStart": 0.0, "SetStop": 2.0, "AutoMan": 0, "Operate":0, "Level": 3.0, CBTrip_Off:0, Overload: 0, wifiSig:100};
+
+var myVar;
+function myStartFunction() {   
+       document.getElementById("demoval1").innerHTML= "ENABLE";
+       myVar = setInterval(getdata, 5000);
+	   document.getElementById("demoval1").style.color="Green";
+       
+}
+
+function myStopFunction() { // stop timer 
+  clearInterval(myVar);
+  document.getElementById("demoval1").innerHTML= "DISABLE";
+  document.getElementById("demoval1").style.color="Red";
+
+}	
+
+//-------------AutoUpdate------------>
+var myVar2 = setInterval(updateTime, 1000); 
+window.onload = getdata();
+//var myVar1 = setInterval(getdata, 5000); 
+
+
+function setImageVisible(id, visible) {
+    var img = document.getElementById(id);
+    img.style.visibility = (visible ? 'visible' : 'hidden');
+}
+
+//<!-------------AutoUpdate------------>
+
+ function myFunctiontimer() {
+  var checkBox = document.getElementById("myCheck");
+  var text = document.getElementById("fieldset");
+  if (checkBox.checked == true){
+    text.style.display = "block";
+  } else {
+     text.style.display = "none";
+  }
+}
+
+function getdata() {
+           var xhttp = new XMLHttpRequest();
+          xhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+         var json = JSON.parse(this.responseText);
+		 // NOTE : to test the code, disable 4 line above and 4 line below KY CONG 28/8/2021
+		//var json = {"TankMax": 10.8, "SetStart": 1.0, "SetStop": 2.8, "AutoMan": 0, "Operate":1, "Level": 5.5, CBTrip_Off:0, Overload: 0, wifiSignal:100};
+		TankMaxLevel.value=json.TankMax;
+		startLevel.value=json.SetStart;
+        stopLevel.value=json.SetStop;
+		// display bar level
+		currentlevel.innerHTML=json.Level;
+		
+		var levelpercent = (Math.round( (currentlevel.innerHTML/TankMaxLevel.value)*100*100 ))/100 ; // Lam tron 2 con so 
+		
+		barlevel.style.height = levelpercent + "%";
+		barlevel.innerHTML = levelpercent+"%";
+		
+		var FBAutoMan=json.AutoMan;
+		var FBRunStop=json.Operate;
+		var FBOverload=json.Overload;
+		var FBCBtripOff=json.CBTrip_Off;
+		
+		if (FBAutoMan==0) {
+		AutoMan.innerHTML = "MANUAL";
+		AutoMan.style.color ="red";
+		AutoButton.checked=false;
+		
+		} else{
+		AutoMan.innerHTML = "AUTO";
+		AutoMan.style.color ="green";
+		AutoButton.checked=true;
+		
+		}
+		
+		var wifiRSSI=json.wifiSignal;
+		document.getElementById('wifirssi').innerHTML = wifiRSSI;
+		
+		
+		if (FBRunStop==0) {
+		RunStop.innerHTML = "STOP";
+		RunStop.style.color ="red";
+		setImageVisible('pumpoff1', true);
+		document.getElementById("pumpoff").innerHTML = "PUMP OFF";
+		setImageVisible('pumpon1', false);
+		} else{
+		RunStop.innerHTML = "RUNNING";
+		RunStop.style.color ="lime";
+		document.getElementById("pumpoff").innerHTML = "PUMP RUN";
+		setImageVisible('pumpoff1', false);
+		setImageVisible('pumpon1', true);
+		}
+		
+		if (FBOverload==0) {
+		setImageVisible('overload', false);
+		setImageVisible('overload1', false);
+		}else{
+		setImageVisible('overload', true);
+		setImageVisible('overload1', true);
+		stoppump();
+		}
+		
+		if (FBCBtripOff==0) {
+		setImageVisible('cbtrip', false);
+		setImageVisible('cbtrip1', false);
+		}else{
+		setImageVisible('cbtrip', true);
+		setImageVisible('cbtrip1', true);
+		stoppump();
+		}
+		
+		//------------------
+		var Mqttenb =json.mqtt; // Enable MQTT
+        var MqttStt=json.mqttst // status CONECT OR NOT
+		var Blkenb =json.blk; // Enable MQTT
+        var BlkStt=json.blkst // status CONECT OR NOT
+		if (Mqttenb){  document.getElementById('mqttenb').innerHTML = "ENABLE";} else{document.getElementById('mqttenb').innerHTML = "DISABLE";}
+		if (MqttStt){  document.getElementById('statusmqtt').innerHTML = "& CONNECTED";} else{document.getElementById('statusmqtt').innerHTML = "& Not CONNECT";}
+		if (Blkenb){  document.getElementById('blkenb').innerHTML = "ENABLE";} else{document.getElementById('blkenb').innerHTML = "DISABLE";}
+		if (BlkStt){  document.getElementById('statusblk').innerHTML = "& CONNECTED";} else{document.getElementById('statusblk').innerHTML = "& Not CONNECT";}
+		
+			
+          }
+        };
+        xhttp.open("GET", "/FBtoWeb", true);
+        xhttp.send();
+
+  }
+//-------------------------------------------
+  
+       function updateTime() 
+    {  
+       var d = new Date();
+       var t = "";
+       var dayval =d.toLocaleDateString();
+       var date =d.toDateString();
+       t = d.toLocaleTimeString();
+       
+       document.getElementById('dateval').innerHTML = date;
+       document.getElementById('timeval').innerHTML = t;
+    }
+
+
+// Sigle button change status--------------------------------------------------------------------
+function state_change() {
+  var xhttp = new XMLHttpRequest();
+
+  if (AutoButton.checked){
+    AutoMan.innerHTML = "AUTO";
+    AutoMan.style.color ="green";
+   state=1;
+    
+  } 
+  else if (!AutoButton.checked){
+     AutoMan.innerHTML = "MANUAL";
+     AutoMan.style.color ="red";
+      state=0;      
+  }
+    
+var Sent="setState?SetAuto="+state;
+document.getElementById("demo").innerHTML = Sent;
+
+ xhttp.open("GET",Sent, true);
+ xhttp.send(); // send string data
+}
+
+// START Pump----------------------------------------
+
+function startpump() {
+  var xhttp = new XMLHttpRequest();
+  
+    RunStop.innerHTML = "RUNNING";
+    RunStop.style.color ="lime";
+	 document.getElementById("pumpoff").innerHTML = "PUMP ON";
+	 setImageVisible('pumpoff1', false);
+	 setImageVisible('pumpon1', true);
+
+  //-----------------------
+    
+var Sent="setState?Operate= 1";
+document.getElementById("demo2").innerHTML = Sent;
+
+ xhttp.open("GET",Sent, true);
+ xhttp.send(); // send string data
+}
+
+function stoppump() {
+  var xhttp = new XMLHttpRequest();
+    RunStop.innerHTML = "STOP";
+    RunStop.style.color ="red";
+	  document.getElementById("pumpoff").innerHTML = "PUMP OFF";
+      setImageVisible('pumpoff1', true);
+	 setImageVisible('pumpon1', false);
+  //-----------------------
+var Sent="setState?Operate=0";
+document.getElementById("demo2").innerHTML = Sent;
+ xhttp.open("GET",Sent, true);
+ xhttp.send(); // send string data
+}
+//--------------------
+function setdata() {
+  var r = confirm("Do you want to setup Auto Operation Pump ?");
+ if(r==true){
+  var xhttp = new XMLHttpRequest();
+var TankMaxset =parseFloat(TankMaxLevel.value); 
+var Stopset = parseFloat(stopLevel.value);
+var Startset = parseFloat(startLevel.value);
+if (Startset < Stopset && Stopset<=TankMaxset ){ 
+
+  
+  var Setup={"TankMax": TankMaxset, "SetStart": Startset, "SetStop":Stopset , "AutoMan": state} ; // these Json will be writen to Flash
+ 
+var myJSON = JSON.stringify(Setup); // Convert Json to Array
+document.getElementById("demo1").innerHTML = myJSON;
+var JsonSent="setState?SetOperate="+ myJSON;
+ xhttp.open("GET",JsonSent, true);
+ xhttp.send(); // send string data
+ 
+ } else { alert("Wrong Setup Value, please check!!"); }
+} // End confirm
+
+}
+
+
+
+
+</script>
+
+
+</body>
+</html>
+

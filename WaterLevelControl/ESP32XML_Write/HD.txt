@@ -1,0 +1,4 @@
+1. Chuong trinh nay cai thien MQTT
+Update MQTT PIN data  30S to Client
+
+2. Publish to MQTT Broker by JSON DOCUMENT
